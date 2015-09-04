@@ -1,15 +1,17 @@
 package com.ssmm.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssmm.dao.UserMapper;
 import com.ssmm.model.User;
 import com.ssmm.service.UserService;
 
+import javax.annotation.Resource;
+import java.util.List;
+
 @Service("userService")
 public class UserServiceImpl implements UserService {
-	@Autowired
+	@Resource
 	private UserMapper userMapper;
 
 	public UserMapper getUserMapper() {
@@ -24,11 +26,19 @@ public class UserServiceImpl implements UserService {
 		return userMapper.selectByPrimaryKey(id);
 	}
 
-	@Override
 	public void saveUser(User user) {
 		userMapper.insert(user);
-//		抛出运行时异常，sql会自动rollback
-//		throw new RuntimeException();
 	}
+
+	public List<User> getAll() {
+		return userMapper.getAll();
+	}
+
+	//	@Override
+//	public void saveUser(User user) {
+//		userMapper.insert(user);
+////		抛出运行时异常，sql会自动rollback
+////		throw new RuntimeException();
+//	}
 
 }

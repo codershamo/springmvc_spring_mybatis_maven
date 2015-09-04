@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ssmm.model.User;
 import com.ssmm.service.UserService;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -26,9 +28,9 @@ public class UserController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
-	String showUser() {
+	List<User> showUser() {
 
-		return "12";
+		return userService.getAll();
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
