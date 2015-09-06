@@ -1,5 +1,6 @@
 package com.ssmm.controller;
 
+import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,14 @@ public class UserController {
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
+
+//	@RequestMapping(method = RequestMethod.GET)
+//	public @ResponseBody
+//	String showUser(String callback) {
+//
+//
+//		return callback + "("+ JSON.toJSONString(userService.getAll())  + ")";
+//	}
 
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody

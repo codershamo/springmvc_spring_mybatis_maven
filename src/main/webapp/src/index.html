@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Bootstrap 3, from LayoutIt!</title>
+
+    <meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="LayoutIt!">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <table id="show_table" class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>
+                        #
+                    </th>
+                    <th>
+                        Product
+                    </th>
+                    <th>
+                        Payment Taken
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                </tr>
+                </thead>
+                <tbody id="table_body">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/scripts.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/user.do",
+            dataType: "json",
+            success: function (data) {
+                if (data.status === 0 || 1 === 1) {
+
+                    $.each(data, function (i, item) {
+
+                        var tbBody = ""
+                        tbBody += "<tr><td>" + (i + 1) + "</td><td>" + item.id + "</td><td>"
+                                + item.username + "</td>"
+                        var td = "<div> <label class=\"checkbox-inline\"> " +
+                                "<input type=\"checkbox\" id=\"inlineCheckbox1\" value=\"option1\"> root </label>" +
+                                "<label class=\"checkbox-inline\"> " +
+                                "<input type=\"checkbox\" id=\"inlineCheckbox2\" value=\"option2\"> admin </label>" +
+                                "<label class=\"checkbox-inline\"> " +
+                                "<input type=\"checkbox\" id=\"inlineCheckbox3\" value=\"option3\"> user </label> </div>"
+                        if(item.books !== null){
+                            $.each(item.books, function(){
+
+                            })
+                        }
+                        tbBody += "<td>" + td + "</td></tr>";
+                        $("#show_table").append(tbBody);
+                    })
+
+                }
+
+            }
+            ,
+
+        });
+    })
+    ;
+</script>
+</body>
+</html>
